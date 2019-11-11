@@ -26,29 +26,12 @@ public class Tondeuse {
 
 	}
 
-	public Tondeuse() {
-	}
-
 	public int getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public Position getPosition() {
 		return position;
-	}
-
-	public void setPosition(Position position) {
-		this.position = position;
-	}
-
-	public Position deplacer() {
-
-		return position;
-
 	}
 
 	public void deplacer(String mouvement) {
@@ -58,7 +41,11 @@ public class Tondeuse {
 			logger.debug("avancer la tondeuse id " + getId());
 			break;
 		case "G":
-			this.orientation=position.tournerGauche();
+			this.orientation = position.tournerGauche();
+			System.out.println("tourner");
+			break;
+		case "D":
+			this.orientation = position.tournerDroite();
 			System.out.println("tourner");
 			break;
 		}
@@ -72,10 +59,6 @@ public class Tondeuse {
 
 	public Pelouse getPelouse() {
 		return pelouse;
-	}
-
-	public void setPelouse(Pelouse pelouse) {
-		this.pelouse = pelouse;
 	}
 
 	public String toString() {
