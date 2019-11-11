@@ -7,13 +7,13 @@ import org.slf4j.Logger;
 import com.sbye.mowit.tondeuse.move.Orientation;
 import com.sbye.mowit.tondeuse.move.Position;
 
-
 /**
  * Unit test for simple App.
  */
 public class TestPosition {
 
 	Logger logger = org.slf4j.LoggerFactory.getLogger(TestPosition.class);
+
 	/**
 	 * Create the test case
 	 *
@@ -21,28 +21,61 @@ public class TestPosition {
 	 * @return
 	 */
 	@Test
-	public void tournerGaucheTest() {
+	public void tournerGaucheNord() {
 		Position position = new Position(2, 2, Orientation.NORD);
-		position = position.tournerGauche();
-		logger.debug("orientation " +position.getOrientation());
-		Assertions.assertEquals("E", position.getOrientation());
+		Orientation orient = position.tournerGauche();
+		logger.debug("orientation " + orient);
+		Assertions.assertEquals(Orientation.EST, orient);
 	}
-
+	@Test
+	public void tournerGaucheSud() {
+		Position position = new Position(2, 2, Orientation.SUD);
+		Orientation orient = position.tournerGauche();
+		logger.debug("orientation " + orient);
+		Assertions.assertEquals(Orientation.OUEST, orient);
+	}
+	
+	@Test
+	public void tournerGaucheEst() {
+		Position position = new Position(2, 2, Orientation.EST);
+		Orientation orient = position.tournerGauche();
+		logger.debug("orientation " + orient);
+		Assertions.assertEquals(Orientation.SUD, orient);
+	}
+	@Test
+	public void tournerGaucheOuest() {
+		Position position = new Position(2, 2, Orientation.OUEST);
+		Orientation orient = position.tournerGauche();
+		logger.debug("orientation " + orient);
+		Assertions.assertEquals(Orientation.NORD, orient);
+	}
 	@Test
 	public void tournerDroiteTest() {
 		Position position = new Position(2, 2, Orientation.NORD);
-		position = position.tournerDroite();
-		
-		Assertions.assertEquals("W", position.getOrientation());
-	}
+		Orientation orient = position.tournerDroite();
 
+		Assertions.assertEquals(Orientation.OUEST, orient);
+	}
 	@Test
-	public void tournerMultiplesTest() {
-		Position position = new Position(2, 2, Orientation.NORD);
-		position=position.tournerGauche();
-		position  = position.tournerGauche();
-		position = position.tournerGauche();
-		position = position.tournerDroite();
-		Assertions.assertEquals("S", position.getOrientation());
+	public void tournerDroiteTestSud() {
+		Position position = new Position(2, 2, Orientation.SUD);
+		Orientation orient = position.tournerDroite();
+
+		Assertions.assertEquals(Orientation.EST, orient);
+	}
+	
+	@Test
+	public void tournerDroiteTestEst() {
+		Position position = new Position(2, 2, Orientation.EST);
+		Orientation orient = position.tournerDroite();
+
+		Assertions.assertEquals(Orientation.NORD, orient);
+	}
+	@Test
+	public void tournerDroiteTestOuest() {
+		Position position = new Position(2, 2, Orientation.OUEST);
+		Orientation orient = position.tournerDroite();
+
+		Assertions.assertEquals(Orientation.SUD, orient);
 	}
 }

@@ -1,11 +1,13 @@
 package com.sbye.mowit.tondeuse;
 
+import com.sbye.mowit.tondeuse.move.Orientation;
 import com.sbye.mowit.tondeuse.move.Position;
 
 public class Tondeuse {
 
 	org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Tondeuse.class);
 	private Position position;
+	private Orientation orientation;
 	private Pelouse pelouse;
 	private int id;
 
@@ -56,7 +58,7 @@ public class Tondeuse {
 			logger.debug("avancer la tondeuse id " + getId());
 			break;
 		case "G":
-			this.position=position.tournerGauche();
+			this.orientation=position.tournerGauche();
 			System.out.println("tourner");
 			break;
 		}

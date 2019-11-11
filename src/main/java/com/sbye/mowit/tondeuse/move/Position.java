@@ -44,13 +44,13 @@ public class Position {
 		return orientation;
 	}
 
-	public Position tournerGauche() {
+	public Orientation tournerGauche() {
 		// TODO Auto-generated method stub
 		Orientation next = null;
 
 		switch (orientation) {
 		case NORD:
-			next = orientation.EST;
+			next = Orientation.EST;
 			break;
 		case SUD:
 			next = Orientation.OUEST;
@@ -59,13 +59,13 @@ public class Position {
 			next = Orientation.SUD;
 			break;
 		case OUEST:
-			next =Orientation.NORD;
+			next = Orientation.NORD;
 			break;
 		}
-		return new Position(abcisse, ordonnee, next);
+		return next;
 	}
 
-	public Position tournerDroite() {
+	public Orientation tournerDroite() {
 		Orientation next = null;
 		switch (orientation) {
 		case NORD:
@@ -81,7 +81,7 @@ public class Position {
 			next = Orientation.SUD;
 			break;
 		}
-		return new Position(abcisse, ordonnee, next);
+		return next;
 	}
 
 	public void avancer() {

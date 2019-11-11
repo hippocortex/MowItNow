@@ -13,9 +13,12 @@ public enum Orientation {
 	public String getOrientation() {
 		return orientation;
 	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(orientation);
+	}
+
 	
-	 @Override
-	  public String toString() {
-	    return String.valueOf(orientation);
-	  }
+
 }
