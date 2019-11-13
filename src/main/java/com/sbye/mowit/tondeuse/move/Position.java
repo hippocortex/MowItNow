@@ -15,8 +15,6 @@ public class Position {
 		this.abcisse = 0;
 		this.ordonnee = 0;
 		this.orientation = Orientation.NORD;
-		nextAbcisse = 0;
-		nextOrdonnee = 1;
 	}
 
 	public Position(int abcis, int ord, Orientation orient) {
@@ -24,7 +22,6 @@ public class Position {
 		abcisse = abcis;
 		ordonnee = ord;
 		orientation = orient;
-
 	}
 
 	private void checkCoord(int abcis, int ord) {
@@ -62,6 +59,7 @@ public class Position {
 			next = Orientation.NORD;
 			break;
 		}
+		orientation=next;
 		return next;
 	}
 
@@ -81,26 +79,44 @@ public class Position {
 			next = Orientation.SUD;
 			break;
 		}
+		orientation=next;
 		return next;
 	}
 
-	public void avancer() {
+	public Position next() {
+		nextAbcisse=abcisse;
+		nextOrdonnee=ordonnee;
 		switch (orientation) {
 		case NORD:
 			nextOrdonnee = getOrdonnee() + 1;
-			ordonnee = getNextOrdonnee();
+			
 			break;
 		case SUD:
 			nextOrdonnee = getOrdonnee() - 1;
-			ordonnee = getNextOrdonnee();
 			break;
 		case EST:
 			nextAbcisse = getAbcisse() - 1;
-			abcisse = getNextAbcisse();
 			break;
 		case OUEST:
 			nextAbcisse = getAbcisse() + 1;
-			abcisse = getNextAbcisse();
+			break;
+		}
+		return new Position(nextAbcisse, nextOrdonnee, orientation);
+	}
+	
+	public void avancer() {
+		switch (orientation) {
+		case NORD:
+			ordonnee+=1;
+			break;
+		case SUD:
+			ordonnee-=1;
+			break;
+		case EST:
+			abcisse-=1;
+			break;
+		case OUEST:
+			abcisse+=1;
 			break;
 		}
 
@@ -109,7 +125,7 @@ public class Position {
 	public int getNextAbcisse() {
 		return nextAbcisse;
 	}
-
+	
 	public int getNextOrdonnee() {
 		return nextOrdonnee;
 	}

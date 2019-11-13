@@ -11,17 +11,13 @@ public class Pelouse {
 	public int getHauteur() {
 		return hauteur;
 	}
-	public void setHauteur(int hauteur) {
-		this.hauteur = hauteur;
-	}
+
 	public int getLargeur() {
 		return largeur;
 	}
-	public void setLargeur(int largeur) {
-		this.largeur = largeur;
-	}
+
 	public boolean contains(int nextAbcisse, int nextOrdonnee) {
-		return (nextAbcisse<getLargeur() && nextOrdonnee<getHauteur());
+		return (nextAbcisse<=getLargeur() && nextOrdonnee<=getHauteur());
 	}
 
 }

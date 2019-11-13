@@ -6,12 +6,18 @@ public enum Orientation {
 
 	private final String orientation;
 
-	private Orientation(String direction) {
+	Orientation(String direction) {
 		orientation = direction;
 	}
 
-	public String getOrientation() {
-		return orientation;
+	public static Orientation get(String o) {
+		Orientation orient = NORD;
+		for (Orientation or : Orientation.values()) {
+			if(or.toString().equals(o)) {
+				orient= or;
+			}
+		}
+		return orient;
 	}
 
 	@Override
