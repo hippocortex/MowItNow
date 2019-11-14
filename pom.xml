@@ -79,6 +79,17 @@
 	</dependencies>
 	<build>
 		<plugins>
+		<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>com.sbye.mowit.Tondre</mainClass>
+                    <arguments>
+                        <argument>test.txt</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>

@@ -63,3 +63,5 @@ IDE: Eclipse IDE 2019‑09
 Tests: JUnit 5
 Autres Dépendances java:  Guava, logback
 
+**Execution**
+
