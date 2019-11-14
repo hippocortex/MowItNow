@@ -7,4 +7,8 @@ public class IllegalPositionException extends Exception {
 	public IllegalPositionException() {
 		super("Position ou dimension impossible sur la pelouse");
 	}
+	
+	public IllegalPositionException(String msg) {
+		super(msg);
+	}
 }

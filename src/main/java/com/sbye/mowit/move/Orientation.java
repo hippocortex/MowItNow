@@ -1,4 +1,4 @@
-package com.sbye.mowit.tondeuse.move;
+package com.sbye.mowit.move;
 
 public enum Orientation {
 

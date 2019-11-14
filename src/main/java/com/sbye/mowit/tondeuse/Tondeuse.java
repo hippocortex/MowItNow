@@ -3,8 +3,8 @@ package com.sbye.mowit.tondeuse;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.sbye.mowit.tondeuse.move.Instruction;
-import com.sbye.mowit.tondeuse.move.Position;
+import com.sbye.mowit.move.Instruction;
+import com.sbye.mowit.move.Position;
 
 public class Tondeuse {
 
@@ -20,7 +20,8 @@ public class Tondeuse {
 
 		position = pos;
 		this.id = id;
-		logger.debug("Creation d'une tondeuse Id "+id+" x: "+position.getAbcisse()+" y: "+position.getOrdonnee());
+		logger.debug(
+				"Creation d'une tondeuse Id " + id + " x: " + position.getAbcisse() + " y: " + position.getOrdonnee());
 	}
 
 	private void checkConditions(Position position, Pelouse pelouse) throws IllegalPositionException {
@@ -30,6 +31,29 @@ public class Tondeuse {
 
 	}
 
+	
+
+	public void avancer() {
+		Position pos = position.next();
+		if (pelouse.contains(pos.getAbcisse(), pos.getOrdonnee()))
+			position.avancer();
+	}
+
+	public void setInstructions(List<Instruction> instructions) {
+		this.instructions = instructions;
+	}
+
+	public void run() {
+		Stream<Instruction> si = instructions.stream();
+		si.forEach(i -> i.bouger(this));
+	}
+
+	public String toString() {
+		StringBuilder builder = new StringBuilder("Tondeuse n° ");
+		return builder.append(this.id).append(" position - abcisse: ").append(this.position.getAbcisse())
+				.append(" position-ordonnee ").append(position.getOrdonnee()).append(" direction ")
+				.append(this.position.getOrientation()).toString();
+	}
 	public int getId() {
 		return this.id;
 	}
@@ -38,42 +62,11 @@ public class Tondeuse {
 		return position;
 	}
 
-	public void deplacer(char mouvement) {
-		switch (mouvement) {
-		case 'A':
-			avancer();
-			break;
-		case 'G':
-			 position.tournerGauche();
-			break;
-		case 'D':
-			 position.tournerDroite();
-			break;
-		}
+	public void tournerGauche() {
+		position.tournerGauche();
 	}
 
-	public void avancer() {
-		Position pos = position.next();
-		if (pelouse.contains(pos.getAbcisse(),pos.getOrdonnee()))
-			position.avancer();
-	}
-
-	public Pelouse getPelouse() {
-		return pelouse;
-	}
-
-	public String toString() {
-		StringBuilder builder = new StringBuilder("Tondeuse n° ");
-		return builder.append(this.id).append(" position - abcisse: ").append(this.position.getAbcisse())
-				.append(" position-ordonnee ").append(position.getOrdonnee()).append(" direction ").append(this.position.getOrientation()).toString();
-	}
-
-	public void setInstructions(List<Instruction> instructions) {
-		this.instructions = instructions;
-	}
-	
-	public void run() {
-		Stream<Instruction> si =instructions.stream();
-		si.forEach(i->deplacer(i.getInstruction()));
+	public void tournerDroite() {
+		position.tournerDroite();
 	}
 }

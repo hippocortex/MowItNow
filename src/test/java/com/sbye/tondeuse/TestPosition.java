@@ -4,8 +4,8 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 
-import com.sbye.mowit.tondeuse.move.Orientation;
-import com.sbye.mowit.tondeuse.move.Position;
+import com.sbye.mowit.move.Orientation;
+import com.sbye.mowit.move.Position;
 
 /**
  * Unit test for simple App.

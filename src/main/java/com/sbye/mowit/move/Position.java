@@ -1,4 +1,4 @@
-package com.sbye.mowit.tondeuse.move;
+package com.sbye.mowit.move;
 
 import org.slf4j.Logger;
 
@@ -128,6 +128,10 @@ public class Position {
 	
 	public int getNextOrdonnee() {
 		return nextOrdonnee;
+	}
+
+	public void setOrientation(Orientation next) {
+		orientation=next;
 	}
 
 }

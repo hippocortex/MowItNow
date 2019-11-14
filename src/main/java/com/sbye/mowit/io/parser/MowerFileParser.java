@@ -12,29 +12,31 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.google.common.base.Preconditions;
+import com.sbye.mowit.move.Instruction;
 import com.sbye.mowit.tondeuse.Controller;
 import com.sbye.mowit.tondeuse.IllegalPositionException;
 import com.sbye.mowit.tondeuse.Pelouse;
 import com.sbye.mowit.tondeuse.Tondeuse;
-import com.sbye.mowit.tondeuse.move.Instruction;
 
 public class MowerFileParser {
+
+	org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
 
 	public Controller processFromFile(File fichier) throws IllegalPositionException{
 		String ligne;
 		Controller controller = null;
 
 		List<String> strings = new ArrayList<String>();
-		try(BufferedReader lecteurAvecBuffer = new BufferedReader(new FileReader(fichier))){
+		try(FileReader file = new FileReader(fichier);BufferedReader lecteurAvecBuffer = new BufferedReader(file)){
 			while ((ligne = lecteurAvecBuffer.readLine()) != null)
 				strings.add(ligne);
 			controller = parse(strings);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.info(e.getMessage());
+			throw new IllegalPositionException("Fichier d'initialisation introuvable");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.info(e.getMessage());
+			throw new IllegalPositionException("Fichier d'initialisation introuvable");
 		}
 		return controller;
 
@@ -42,17 +44,14 @@ public class MowerFileParser {
 
 	
 
-	public Controller processFromPath(String inputFileName) {
+	public Controller processFromPath(String inputFileName) throws IllegalPositionException {
 		Controller controller = null;
 		try {
 			controller = parse(Files.readAllLines(Paths.get(inputFileName)));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalPositionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			logger.info(e.getMessage());
+			throw new IllegalPositionException("Fichier d'initialisation introuvable");
+		} 
 		return controller;
 	}
 

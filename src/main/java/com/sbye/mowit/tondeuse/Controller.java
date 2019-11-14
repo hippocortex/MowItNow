@@ -1,7 +1,10 @@
 package com.sbye.mowit.tondeuse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import com.sbye.mowit.move.Position;
 
 public class Controller {
 
@@ -16,10 +19,13 @@ public class Controller {
 		return tondeuses;
 	}
 
-	public void tondeusesPositions() {
+	public List<Position> tondeusesPositions() {
+		List<Position> positions = new ArrayList<Position>();
 		for (Tondeuse tondeuse : tondeuses) {
+			positions.add(tondeuse.getPosition());
 			logger.debug("Tondeuse Id "+tondeuse.getId()+"position abcisse "+tondeuse.getPosition().getAbcisse()+" ordonnee "+tondeuse.getPosition().getOrdonnee()+"orientation "+tondeuse.getPosition().getOrientation());
 		}
+		return positions;
 	}
 	
 	public void lancer() {

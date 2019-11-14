@@ -3,11 +3,11 @@ package com.sbye.mowit.io.parser;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.google.common.base.Preconditions;
+import com.sbye.mowit.move.Orientation;
+import com.sbye.mowit.move.Position;
 import com.sbye.mowit.tondeuse.IllegalPositionException;
 import com.sbye.mowit.tondeuse.Pelouse;
 import com.sbye.mowit.tondeuse.Tondeuse;
-import com.sbye.mowit.tondeuse.move.Orientation;
-import com.sbye.mowit.tondeuse.move.Position;
 
 public class MowerParser {
 
