@@ -65,3 +65,4 @@ Autres Dépendances java:  Guava, logback
 
 **Execution**
 
+possible de lancer directement avec Maven : mvn exec:java
